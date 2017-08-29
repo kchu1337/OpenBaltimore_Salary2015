@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+    <div th:replace = "fragments ::header"></div>
+    <script src="/app/app.module.js" th:src="@{/app/app.module.js}"></script>
+    <script src="/app/data.controller.js" th:src="@{/app/data.controller.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
+
+</head>
+<body ng-app="app" ng-controller="DataController">
+<style>
+    .st-sort-ascent:before{
+        content: '\25B2';
+    }
+
+    .st-sort-descent:before{
+        content: '\25BC';
+    }
+</style>
+
+<div class = "container">
+    <table st-set-filter="customFilter" st-table="salaryCollection" st-safe-src="salaryList"
+           class="table table-bordered table-striped">
+        <!--use salaryCollection for variables, st-safe-src is needed for crud and asynchronous data loading-->
+        <thead>
+        <tr>
+            <th st-sort="lastName">Last Name</th>
+            <th st-sort="firstInitial">First Initial</th>
+            <th st-sort="job">Job Title</th>
+            <th st-sort="agencyId">Agency ID</th>
+            <th st-sort="agencyName">Agency Name</th>
+            <th st-sort="annualSalary">Annual Salary</th>
+            <th st-sort="grossSalary">Gross Salary</th>
+        </tr>
+        <tr>
+            <th>
+                <input placeholder="search lastname" st-search="lastName" width="30"/>
+            </th>
+            <th>
+            </th>
+            <th>
+                <input placeholder="search jobs" st-search="job" />
+            </th>
+            <th>
+                <input placeholder="search agency ID" st-search="agencyId" width="60"/>
+            </th>
+            <th>
+                <input placeholder="search agency name" st-search="agencyName" />
+            </th>
+            <th>
+                <st-number-range predicate="annualSalary" lower="query.lower" higher="query.higher"></st-number-range>
+            </th>
+            <th>
+                <st-number-range predicate="grossSalary" lower="query.lower" higher="query.higher"></st-number-range>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="salary in salaryCollection">
+            <td>{{salary.lastName}}</td>
+            <td>{{salary.firstInitial | uppercase}}</td>
+            <td>{{salary.job}}</td>
+            <td>{{salary.agencyId}}</td>
+            <td>{{salary.agencyName}}</td>
+            <td>{{salary.annualSalary | currency}}</td>
+            <td>{{salary.grossSalary | currency}}</td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td colspan="5" class="text-center">
+                <div st-pagination="" st-items-by-page="100" st-displayed-pages="5"></div>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+</body>
+</html>
