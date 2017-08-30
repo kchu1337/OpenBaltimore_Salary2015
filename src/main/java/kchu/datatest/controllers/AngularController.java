@@ -18,4 +18,10 @@ public class AngularController {
     public Iterable<Salary> getdata(){
         return salaryRepository.findAll();
     }
+
+    @RequestMapping("/delete/{id}")
+    public Iterable<Salary> delete(@PathVariable("id") long id){
+        salaryRepository.delete(id);
+        return salaryRepository.findAll();
+    }
 }

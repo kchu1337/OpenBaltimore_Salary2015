@@ -1,3 +1,3 @@
 
 
-    var app = angular.module('app', ['smart-table']);
+    var app = angular.module('app', ['smart-table', 'ui.bootstrap']);

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Update</title>
+</head>
+<body>
+<form th:object="${salary}" method="POST" action="'/update/'+${salary.id}">
+    <label>Last Name</label>
+    <input type="text" value="*{lastName}" th:field = "*{lastName}"/>
+    <br/>
+    <label>Job Title</label>
+    <input type="text" list="jobs" value="*{job}" th:field = "*{job}"/>
+    <datalist id="jobs">
+        <th:block th:each="jobString: ${jobList}">
+        <option value="${jobString}"/>
+        </th:block>
+    </datalist>
+    <br/>
+    <label>Employer</label>
+    <input type="text" value="*{agencyName}" th:field = "*{agencyName}"/>
+    <br/>
+    <label>Annual Salary</label>
+    <input type="text" value="*{annualSalary}" th:field = "*{annualSalary}"/>
+</form>
+</body>
+</html>
