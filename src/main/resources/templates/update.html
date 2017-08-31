@@ -5,23 +5,40 @@
     <title>Update</title>
 </head>
 <body>
-<form th:object="${salary}" method="POST" action="'/update/'+${salary.id}">
+<form th:object="${salary}" method="POST" th:action="@{'/update/'+${salary.id}}">
     <label>Last Name</label>
     <input type="text" value="*{lastName}" th:field = "*{lastName}"/>
     <br/>
+    <label>First Initial</label>
+    <input type="text" value="*{firstInitial}" th:field = "*{firstInitial}" maxlength="1"/>
+    <br/>
     <label>Job Title</label>
-    <input type="text" list="jobs" value="*{job}" th:field = "*{job}"/>
+    <input type="text" list="jobs" value="*{job}"
+           th:field = "*{job}"  size ="40"/>
     <datalist id="jobs">
         <th:block th:each="jobString: ${jobList}">
-        <option value="${jobString}"/>
+            <option th:text = "${jobString}"></option>
         </th:block>
     </datalist>
     <br/>
     <label>Employer</label>
-    <input type="text" value="*{agencyName}" th:field = "*{agencyName}"/>
+    <input type="text" list="employers" value="*{agencyName}"
+           th:field = "*{agencyName}" size ="40"/>
+    <datalist id="employers">
+        <th:block th:each="employer: ${employerList}">
+            <option th:text = "${employer}"></option>
+        </th:block>
+    </datalist>
     <br/>
     <label>Annual Salary</label>
-    <input type="text" value="*{annualSalary}" th:field = "*{annualSalary}"/>
+    <input type="number" step=".01" value="*{annualSalary}" th:field = "*{annualSalary}"/>
+    <br/>
+    <label>Gross Salary</label>
+    <input type="number"  step=".01" value="*{grossSalary}" th:field = "*{grossSalary}"/>
+    <br/>
+    <button type="submit">Update</button>
+    <button type="button"
+                    onclick="window.open('', '_self', ''); window.close();">Cancel</button>
 </form>
 </body>
 </html>

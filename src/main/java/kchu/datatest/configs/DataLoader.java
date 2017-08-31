@@ -38,7 +38,7 @@ public class DataLoader implements CommandLineRunner {
                 grossSalary = Double.parseDouble(data[7]);
             }
             else{
-                grossSalary = -1;
+                grossSalary = 0;
             }
             Salary salary = new Salary(lastName,firstInitial,jobTitle,agencyName,annualSalary,grossSalary);
             salaryRepository.save(salary);
