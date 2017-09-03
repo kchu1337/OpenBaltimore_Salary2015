@@ -8,6 +8,8 @@
     <script src="/app/data.controller.js" th:src="@{/app/data.controller.js}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
+    <script type="text/javascript" src="/js/fusioncharts.js"></script>
+    <script type="text/javascript" src="/js/angular-fusioncharts.min.js"></script>
 
 </head>
 <body ng-app="app" ng-controller="DataController">
@@ -82,6 +84,11 @@
         </tfoot>
     </table>
 </div>
-
+<fusioncharts
+        width="600"
+        height="400"
+        type="column2d"
+        datasource="{{myDataSource}}"
+></fusioncharts>
 </body>
 </html>

@@ -11,4 +11,8 @@ public interface SalaryRepository extends CrudRepository<Salary,Long> {
 
     @Query(value = "SELECT distinct Agency_Name FROM Salary order by Agency_Name asc", nativeQuery = true)
     Iterable<String> findDistinctAgencyName();
+
+    @Query(value = "SELECT job, COUNT(job) as jobcount FROM salary group by job order by jobcount desc limit 10",
+    nativeQuery = true)
+    Iterable<Object[]> findTop10CommonJobs();
 }

@@ -1,12 +1,15 @@
 package kchu.datatest.controllers;
 
-import kchu.datatest.models.Salary;
+import kchu.datatest.models.*;
 import kchu.datatest.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.xml.crypto.Data;
+import java.math.BigInteger;
 
 
 /**
@@ -21,7 +24,6 @@ public class HomeController {
     //returns the homepage at the root
     public String home(){
         return "index";
-
     }
 
     @GetMapping("/add")
@@ -66,5 +68,17 @@ public class HomeController {
     public String updatePost(@ModelAttribute Salary salary, Model model){
         salaryRepository.save(salary);
     return"data successfully updated";
+    }
+
+    @RequestMapping("/test")
+    @ResponseBody
+    public String test(Model model){
+        Iterable<Object[]> dataSets = salaryRepository.findTop10CommonJobs();
+        String output= "";
+        for(Object[] data: dataSets){
+            DataSet dataset = new DataSet((String)data[0],((BigInteger)data[1]).toString());
+            output+=dataset;
+        }
+        return output;
     }
 }
