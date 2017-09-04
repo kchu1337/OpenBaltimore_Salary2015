@@ -1,6 +1,6 @@
     'use strict';
 
-    app.controller("DataController",['$scope', '$http','$filter',
+    app.controller("TableController",['$scope', '$http','$filter',
         function($scope, $http, $filter) {
         $scope.salaryList= [];
 
@@ -36,26 +36,4 @@
                 var updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
                 updateWindow.document.write('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
             }
-
-            //Gets data to populate the graphs
-            $scope.myDataSource = {
-                chart: {
-                    "caption":"Caption",
-                    "subcaption":"subcaption"
-                },
-                data:[]
-            };
-            var url2 = "/top10byjobs"
-            var chartdata = [];
-            var chartPromise = $http.get(url2);
-            chartPromise.then(function(response){
-                chartdata  = response.data;
-                $scope.myDataSource = {
-                       chart: {
-                            "caption": "Most Common Jobs",
-                            "subcaption": "Top 10"
-                        },
-                       data: chartdata
-                    }
-                    })
     }]);

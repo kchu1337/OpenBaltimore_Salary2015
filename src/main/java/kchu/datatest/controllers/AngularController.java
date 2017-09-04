@@ -3,10 +3,7 @@ package kchu.datatest.controllers;
 import kchu.datatest.models.*;
 import kchu.datatest.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -21,9 +18,7 @@ public class AngularController {
     SalaryRepository salaryRepository;
 
     @RequestMapping("/getdata")
-    public Iterable<Salary> getdata(){
-        return salaryRepository.findAll();
-    }
+    public Iterable<Salary> getdata(){return salaryRepository.findAll();}
 
     @RequestMapping("/delete/{id}")
     public Iterable<Salary> delete(@PathVariable("id") long id){
@@ -31,15 +26,35 @@ public class AngularController {
         return salaryRepository.findAll();
     }
 
-    @RequestMapping("/top10byjobs")
-    public List<DataSet> top10ByJobs(){
-        Iterable<Object[]> jobCountList = salaryRepository.findTop10CommonJobs();
-        ArrayList<DataSet> returnDataSet = new ArrayList<DataSet>();
+    @RequestMapping("/top10bysalary")
+    public List<DataSet> top10BySalary(){
+        return(createDataSetList(salaryRepository.findTop10HighestJobs()));
+    }
 
-        for(Object[] data: jobCountList){
-            DataSet dataSet = new DataSet((String)data[0],((BigInteger)data[1]).toString());
-            returnDataSet.add(dataSet);
+    @RequestMapping("/top10filtered")
+    public List<DataSet> top10Filtered(
+            @RequestParam(value="job", defaultValue="") String job,
+            @RequestParam(value="count", defaultValue = "1") int count,
+            @RequestParam(value="salary", defaultValue = "-1") int salary){
+        if (salary<0){
+            salary = (int)Math.round(salaryRepository.findMaxSalary());
         }
-        return returnDataSet;
+        //Adds wildcards to the job search string
+        job = '%'+job+'%';
+        return(createDataSetList(salaryRepository.findTop10Filtered(job, count, salary)));
+    }
+
+    //Helper functions
+
+    //Returns a json formatted list of the chart data
+    private List<DataSet> createDataSetList(Iterable<Object[]> dbResult){
+        ArrayList<DataSet> dataSetList = new ArrayList<DataSet>();
+        for(Object[] data: dbResult){
+            //For each tuple, creates a new DataSet object with the tuple
+            //values and adds it to the list
+            DataSet dataSet = new DataSet((String)data[0],(int)(Math.round((double)data[1])));
+            dataSetList.add(dataSet);
+        }
+        return dataSetList;
     }
 }

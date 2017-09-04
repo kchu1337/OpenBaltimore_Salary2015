@@ -5,14 +5,15 @@
     <title>Title</title>
     <div th:replace = "fragments ::header"></div>
     <script src="/app/app.module.js" th:src="@{/app/app.module.js}"></script>
-    <script src="/app/data.controller.js" th:src="@{/app/data.controller.js}"></script>
+    <script src="/app/data.controller.js"></script>
+    <script src="/app/chart.controller.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
     <script type="text/javascript" src="/js/fusioncharts.js"></script>
     <script type="text/javascript" src="/js/angular-fusioncharts.min.js"></script>
 
 </head>
-<body ng-app="app" ng-controller="DataController">
+<body ng-app="app">
 <style>
     .st-sort-ascent:before{
         content: '\25B2';
@@ -26,7 +27,7 @@
     }
 </style>
 
-<div class = "container">
+<div class = "container" ng-controller="TableController">
     <button ng-click="add()" type="button">Add new Salary Info</button>
     <br/>
     <table st-table="salaryCollection" st-safe-src="salaryList"
@@ -84,11 +85,14 @@
         </tfoot>
     </table>
 </div>
-<fusioncharts
-        width="600"
-        height="400"
-        type="column2d"
-        datasource="{{myDataSource}}"
-></fusioncharts>
+<div class = "container" ng-controller="ChartController">
+    <br/>
+    <fusioncharts
+            width="900"
+            height="400"
+            type="column2d"
+            datasource="{{jobAvgData}}"
+    ></fusioncharts>
+</div>
 </body>
 </html>

@@ -2,18 +2,18 @@ package kchu.datatest.models;
 
 public class DataSet {
     private String label;
-    private double value;
+    private int value;
 
     public DataSet() {
     }
 
-    public DataSet(String label, double value) {
+    public DataSet(String label, int value) {
         this.label = label;
         this.value = value;
     }
     public DataSet(String label, String value) {
         this.label = label;
-        this.value = Double.parseDouble(value);
+        this.value = Integer.parseInt(value);
     }
 
     public String getLabel() {
@@ -28,12 +28,8 @@ public class DataSet {
         return value;
     }
 
-    public void setValue(double value) {
-        this.value = value;
-    }
-
     public void setValue(int value) {
-        this.value = (double)value;
+        this.value = value;
     }
 
     @Override
