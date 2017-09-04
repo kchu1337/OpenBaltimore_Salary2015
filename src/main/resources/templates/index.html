@@ -24,7 +24,7 @@
         content: '\25BC';
     }
     td{
-        font-size: 80%;
+        font-size: 90%;
     }
 </style>
 
@@ -35,14 +35,6 @@
            class="table table-bordered table-striped">
         <!--use salaryCollection for variables, st-safe-src is needed for crud and asynchronous data loading-->
         <thead>
-        <tr>
-            <th st-sort="lastName">Last Name</th>
-            <th st-sort="firstInitial">First Initial</th>
-            <th st-sort="job">Job Title</th>
-            <th st-sort="agencyName">Agency Name</th>
-            <th st-sort="annualSalary">Annual Salary</th>
-            <th st-sort="grossSalary">Gross Salary</th>
-        </tr>
         <tr>
             <th>
                 <input placeholder="search lastname" st-search="lastName" width="30"/>
@@ -55,12 +47,22 @@
             <th>
                 <input placeholder="search agency name" st-search="agencyName" />
             </th>
-            <th>
-                <st-number-range predicate="annualSalary" lower="query.lower" higher="query.higher"></st-number-range>
+            <th colspan="3">
+                <rzslider rz-slider-model="salaryTableSlider.minValue"
+                          rz-slider-high="salaryTableSlider.maxValue"
+                          rz-slider-options="salaryTableSlider.options"></rzslider>
+                <button ng-click = "filterSalary()">Filter Salary</button>
+                <button ng-click = "reset()">Reset Salary Filter</button>
             </th>
-            <th>
-                <st-number-range predicate="grossSalary" lower="query.lower" higher="query.higher"></st-number-range>
-            </th>
+        </tr>
+        <tr>
+            <th st-sort="lastName">Last Name</th>
+            <th st-sort="firstInitial">First Initial</th>
+            <th st-sort="job">Job Title</th>
+            <th st-sort="agencyName">Agency Name</th>
+            <th st-sort="annualSalary">Annual Salary</th>
+            <th st-sort="grossSalary">Gross Salary</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>

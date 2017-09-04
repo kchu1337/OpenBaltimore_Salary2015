@@ -17,6 +17,8 @@ public interface SalaryRepository extends CrudRepository<Salary,Long> {
             "(Select count(job) as count from salary group by job)", nativeQuery = true)
     int findMaxJobCount();
 
+    Iterable<Salary> findAllByAnnualSalaryBetween(double min, double max);
+
     @Query(value = "SELECT distinct Job FROM Salary order by Job asc", nativeQuery = true)
     Iterable<String> findDistinctJobs();
 

@@ -20,6 +20,12 @@ public class AngularController {
     @RequestMapping("/getdata")
     public Iterable<Salary> getdata(){return salaryRepository.findAll();}
 
+    @RequestMapping("/getdatabetween")
+    public Iterable<Salary> getdatabetween(@RequestParam(value="min") double min,
+                                           @RequestParam(value="max") double max){
+        return salaryRepository.findAllByAnnualSalaryBetween(min,max);
+    }
+
     @RequestMapping("/delete/{id}")
     public Iterable<Salary> delete(@PathVariable("id") long id){
         salaryRepository.delete(id);
