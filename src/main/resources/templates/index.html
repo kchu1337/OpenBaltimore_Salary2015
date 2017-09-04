@@ -8,8 +8,9 @@
     <script src="/app/data.controller.js"></script>
     <script src="/app/chart.controller.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.0/rzslider.min.js"></script>
     <script type="text/javascript" src="/js/fusioncharts.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/angularjs-slider/6.4.0/rzslider.min.css" rel="stylesheet" />
     <script type="text/javascript" src="/js/angular-fusioncharts.min.js"></script>
 
 </head>
@@ -86,6 +87,27 @@
     </table>
 </div>
 <div class = "container" ng-controller="ChartController">
+    <label>Job Title</label>
+    <input type = "text" id ="jobChart"/>
+    <br/>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Maximum Salary</label>
+            <br/>
+            <rzslider rz-slider-model="salarySlider.value"
+                      rz-slider-options="salarySlider.options"></rzslider>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Minimum Job Count</label>
+            <br/>
+            <rzslider rz-slider-model="countSlider.value"
+                      rz-slider-options="countSlider.options"></rzslider>
+        </div>
+    </div>
+    <button ng-click = "filter()">filter chart</button>
+
     <br/>
     <fusioncharts
             width="900"
@@ -94,5 +116,6 @@
             datasource="{{jobAvgData}}"
     ></fusioncharts>
 </div>
+
 </body>
 </html>

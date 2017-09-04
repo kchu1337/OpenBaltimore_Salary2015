@@ -10,6 +10,9 @@ public interface SalaryRepository extends CrudRepository<Salary,Long> {
     @Query(value = "SELECT MAX(annual_salary) FROM Salary", nativeQuery = true)
     double findMaxSalary();
 
+    @Query(value = "SELECT MIN(annual_salary) FROM Salary", nativeQuery = true)
+    double findMinSalary();
+
     @Query(value = "SELECT MAX(count) FROM " +
             "(Select count(job) as count from salary group by job)", nativeQuery = true)
     int findMaxJobCount();

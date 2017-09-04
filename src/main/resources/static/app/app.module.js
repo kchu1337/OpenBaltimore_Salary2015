@@ -1,3 +1,3 @@
 
 
-    var app = angular.module('app', ['smart-table', 'ng-fusioncharts']);
+    var app = angular.module('app', ['smart-table', 'ng-fusioncharts','rzModule']);

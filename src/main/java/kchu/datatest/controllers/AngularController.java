@@ -25,6 +25,16 @@ public class AngularController {
         salaryRepository.delete(id);
         return salaryRepository.findAll();
     }
+    @RequestMapping("/maxsalary")
+    public int maxSalary(){
+        double maxSalary= salaryRepository.findMaxSalary();
+        return (int)Math.round(maxSalary/1000)*1000;
+    }
+    @RequestMapping("/minsalary")
+    public int minSalary(){
+        double minSalary= salaryRepository.findMinSalary();
+        return (int)Math.round(minSalary/1000)*1000;
+    }
 
     @RequestMapping("/top10bysalary")
     public List<DataSet> top10BySalary(){
@@ -44,7 +54,8 @@ public class AngularController {
         return(createDataSetList(salaryRepository.findTop10Filtered(job, count, salary)));
     }
 
-    //Helper functions
+//*****************************************************************************************************
+// Helper functions
 
     //Returns a json formatted list of the chart data
     private List<DataSet> createDataSetList(Iterable<Object[]> dbResult){
