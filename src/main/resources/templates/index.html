@@ -26,15 +26,53 @@
     td{
         font-size: 90%;
     }
-</style>
+    .image {
+        background-image:url('https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/Baltimore-sunset-pano.jpg/1920px-Baltimore-sunset-pano.jpg') ;
+        background-size:cover;
+    }
+    h1 {
+        font-size: 48px;
+        color: #fff;
+        text-shadow: 1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000;
+        text-align: center;
+        line-height: 200px;
+    }
 
+</style>
 <div class = "container" ng-controller="TableController">
-    <button ng-click="add()" type="button">Add new Salary Info</button>
+    <div class = "image">
+        <h1>2015 Baltimore Employee Salary Data</h1>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+    </div>
+    <br/>
+    <div class = "col-md-2">
+        <div class="btn-group" role="group" aria-label="...">
+            Items per page
+            <br/>
+            <button type="button" class="btn btn-default" ng-click = "page25()" autofocus="autofocus">25</button>
+            <button type="button" class="btn btn-default" ng-click = "page50()">50</button>
+            <button type="button" class="btn btn-default" ng-click = "page100()">100</button>
+        </div>
+    </div>
+
+    <div class = "col-md-2 col-md-offset-8">
+        <button ng-click="add/()" type="button" class = "btn btn-success">
+            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new Salary Info
+        </button>
+    </div>
+    <br/>
+    <br/>
     <br/>
     <table st-table="salaryCollection" st-safe-src="salaryList"
            class="table table-bordered table-striped">
         <!--use salaryCollection for variables, st-safe-src is needed for crud and asynchronous data loading-->
         <thead>
+
         <tr>
             <th>
                 <input placeholder="search lastname" st-search="lastName" width="30"/>
@@ -51,8 +89,8 @@
                 <rzslider rz-slider-model="salaryTableSlider.minValue"
                           rz-slider-high="salaryTableSlider.maxValue"
                           rz-slider-options="salaryTableSlider.options"></rzslider>
-                <button ng-click = "filterSalary()">Filter Salary</button>
-                <button ng-click = "reset()">Reset Salary Filter</button>
+                <button class = "btn btn-primary" ng-click = "filterSalary()">Filter Salary</button>
+                <button class = "btn btn-primary" ng-click = "reset()">Reset Salary Filter</button>
             </th>
         </tr>
         <tr>
@@ -74,23 +112,33 @@
             <td>{{salary.annualSalary | currency}}</td>
             <td>{{salary.grossSalary | currency}}</td>
             <td>
-                <button ng-click="update(salary.id)" type="button">Edit</button>
-                <button ng-click="delete(salary.id)" type="button">Delete</button>
+                <button ng-click="update(salary.id)" type="button" class = "btn btn-info">
+                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Edit
+                </button>
+                <button ng-click="delete(salary.id)" type="button" class = "btn btn-danger">
+                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Delete
+                </button>
             </td>
         </tr>
         </tbody>
         <tfoot>
         <tr>
-            <td colspan="5" class="text-center">
-                <div st-pagination="" st-items-by-page="100" st-displayed-pages="5"></div>
+
+            <td colspan="7" class="text-center">
+                <div st-pagination="" st-items-by-page="itemsPerPage" st-displayed-pages="7"></div>
             </td>
         </tr>
         </tfoot>
     </table>
 </div>
 <div class = "container" ng-controller="ChartController">
-    <label>Job Title</label>
-    <input type = "text" id ="jobChart"/>
+    <div class="row">
+        <div class="col-md-6">
+            <label>Job Title</label>
+            <br/>
+            <input type = "text" id ="jobChart" size="35"/>
+        </div>
+    </div>
     <br/>
     <div class="row">
         <div class="col-md-6">
@@ -108,7 +156,7 @@
                       rz-slider-options="countSlider.options"></rzslider>
         </div>
     </div>
-    <button ng-click = "filter()">filter chart</button>
+    <button class = "btn btn-info" ng-click = "filter()">Filter Chart</button>
 
     <br/>
     <fusioncharts
