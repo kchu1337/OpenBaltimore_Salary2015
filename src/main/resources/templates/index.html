@@ -54,14 +54,14 @@
         <div class="btn-group" role="group" aria-label="...">
             Items per page
             <br/>
-            <button type="button" class="btn btn-default" ng-click = "page25()" autofocus="autofocus">25</button>
-            <button type="button" class="btn btn-default" ng-click = "page50()">50</button>
-            <button type="button" class="btn btn-default" ng-click = "page100()">100</button>
+            <button type="button" class="btn btn-default" ng-click = "page25()" ng-class="{active : itemsPerPage === 25}">25</button>
+            <button type="button" class="btn btn-default" ng-click = "page50()" ng-class="{active : itemsPerPage === 50}">50</button>
+            <button type="button" class="btn btn-default" ng-click = "page100()" ng-class="{active : itemsPerPage === 100}">100</button>
         </div>
     </div>
 
     <div class = "col-md-2 col-md-offset-8">
-        <button ng-click="add/()" type="button" class = "btn btn-success">
+        <button ng-click="add()" type="button" class = "btn btn-success">
             <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add new Salary Info
         </button>
     </div>
@@ -85,7 +85,7 @@
             <th>
                 <input placeholder="search agency name" st-search="agencyName" />
             </th>
-            <th colspan="3">
+            <th colspan="11">
                 <rzslider rz-slider-model="salaryTableSlider.minValue"
                           rz-slider-high="salaryTableSlider.maxValue"
                           rz-slider-options="salaryTableSlider.options"></rzslider>
@@ -148,6 +148,7 @@
                       rz-slider-options="salarySlider.options"></rzslider>
         </div>
     </div>
+    <br/>
     <div class="row">
         <div class="col-md-6">
             <label>Minimum Job Count</label>
@@ -156,8 +157,10 @@
                       rz-slider-options="countSlider.options"></rzslider>
         </div>
     </div>
+    <br/>
     <button class = "btn btn-info" ng-click = "filter()">Filter Chart</button>
 
+    <br/>
     <br/>
     <fusioncharts
             width="900"

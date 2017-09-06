@@ -3,19 +3,14 @@
 app.controller("TableController",['$scope', '$http','$filter',
     function($scope, $http, $filter) {
         $scope.salaryList= [];
+        $scope.itemsPerPage = 25;
 
-        //Loads the data from the database and populates the chart
-        var url = "/getdata";
-        var salaryPromise
-            = $http.get(url);
-        salaryPromise.then(function(response){
-            $scope.salaryList = response.data;
-        });
+        init();
 
         //Creates salary Slider
         $scope.salaryTableSlider = {
             minValue: 1000,
-            maxValue: 1000,
+            maxValue: 2000,
             options: {
                 floor: 1000,
                 ceil: 5000,
@@ -35,6 +30,17 @@ app.controller("TableController",['$scope', '$http','$filter',
             $scope.salaryTableSlider.maxValue=maxSalary;
         })
 
+        //Loads the data from the database and populates the chart
+        function init () {
+            var url = "/getdata";
+            var salaryPromise
+                = $http.get(url);
+            salaryPromise.then(function (response) {
+                $scope.salaryList = response.data;
+            });
+        }
+
+
         $scope.filterSalary = function () {
             var min= $scope.salaryTableSlider.minValue;
             var max= $scope.salaryTableSlider.maxValue;
@@ -43,6 +49,11 @@ app.controller("TableController",['$scope', '$http','$filter',
                 $scope.salaryList = response.data;
             });
         }
+
+        $scope.reset = function () {
+            init();
+        }
+
 
         //Deletes the salary tuple corresponding to the id and updates the chart
         $scope.delete = function (id) {
@@ -67,5 +78,16 @@ app.controller("TableController",['$scope', '$http','$filter',
             //opens new window to update information as an iframe so url is not displayed
             var updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
             updateWindow.document.write('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
+        }
+
+        //Changes the number of items displayed per table page
+        $scope.page25 = function () {
+           $scope.itemsPerPage = 25;
+        }
+        $scope.page50 = function () {
+            $scope.itemsPerPage = 50;
+        }
+        $scope.page100 = function () {
+            $scope.itemsPerPage = 100;
         }
     }]);
