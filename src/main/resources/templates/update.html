@@ -36,9 +36,16 @@
     <label>Gross Salary</label>
     <input type="number"  step=".01" value="*{grossSalary}" th:field = "*{grossSalary}"/>
     <br/>
-    <button type="submit">Update</button>
+    <button type="submit">Submit</button>
     <button type="button"
-                    onclick="window.open('', '_self', ''); window.close();">Cancel</button>
+            onclick="cancel()">Cancel</button>
+    <br/>
+    <script>
+        function cancel() {
+            window.top.opener.cancel();
+        }
+    </script>
 </form>
+
 </body>
 </html>

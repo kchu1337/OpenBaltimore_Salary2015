@@ -3,18 +3,15 @@
     <meta charset="UTF-8"/>
     <title>Update</title>
     <style>
-        p {
-            text-align: center;
-        }
-
-
     </style>
 </head>
-
 <body>
+<script>
 
-<p th:text = "${message}"></p>
-<br/>
-
+    function updated() {
+        window.top.opener.saved();
+    }
+    window.onload = updated();
+</script>
 </body>
 </html>

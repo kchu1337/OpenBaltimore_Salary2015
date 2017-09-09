@@ -34,12 +34,12 @@ public class AngularController {
     @RequestMapping("/maxsalary")
     public int maxSalary(){
         double maxSalary= salaryRepository.findMaxSalary();
-        return (int)Math.round(maxSalary/1000)*1000;
+        return (int)Math.ceil(maxSalary/1000)*1000;
     }
     @RequestMapping("/minsalary")
     public int minSalary(){
         double minSalary= salaryRepository.findMinSalary();
-        return (int)Math.round(minSalary/1000)*1000;
+        return (int)Math.floor(minSalary/1000)*1000;
     }
 
     @RequestMapping("/top10bysalary")

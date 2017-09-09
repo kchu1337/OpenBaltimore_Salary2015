@@ -1,10 +1,13 @@
 'use strict';
 
-app.controller("TableController",['$scope', '$http','$filter',
-    function($scope, $http, $filter) {
+app.controller("TableController",['$scope', '$http','$filter', '$timeout',
+    function($scope, $http, $filter, $timeout) {
+
         $scope.salaryList= [];
         $scope.itemsPerPage = 25;
+        var updateWindow;
 
+        //initializes the table
         init();
 
         //Creates salary Slider
@@ -40,7 +43,6 @@ app.controller("TableController",['$scope', '$http','$filter',
             });
         }
 
-
         $scope.filterSalary = function () {
             var min= $scope.salaryTableSlider.minValue;
             var max= $scope.salaryTableSlider.maxValue;
@@ -48,10 +50,12 @@ app.controller("TableController",['$scope', '$http','$filter',
             salaryPromise.then(function(response){
                 $scope.salaryList = response.data;
             });
+            alert("Salary Filterd");
         }
 
         $scope.reset = function () {
             init();
+            alert("Salary Filter reset");
         }
 
 
@@ -68,17 +72,35 @@ app.controller("TableController",['$scope', '$http','$filter',
         $scope.update = function (id) {
             var url = "/update/"+id;
             //opens new window to update information as an iframe so url is not displayed
-            var updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
-            updateWindow.document.write('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
+            updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
+            updateWindow.document.write
+            ('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
+
         }
 
         //opens window to add new salary tuple
         $scope.add = function () {
             var url = "/add"
             //opens new window to update information as an iframe so url is not displayed
-            var updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
-            updateWindow.document.write('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
+            updateWindow = window.open("about:blank","","top=100,left=300,width=500,height=400");
+            updateWindow.document.write
+            ('<iframe src="'+url+'"; style="height: 100%;width: 100%;border: none;"></iframe>');
         }
+        
+        //If the cancel button is clicked on the update/add window, closes the window
+        $scope.closeWin = function () {
+            updateWindow.close();
+        };
+
+        //If the submit button is clicked on the update/add window,
+        // closes the window and alerts the user that the table has been updated
+        $scope.closeWinUpdate = function () {
+            updateWindow.close();
+            $timeout( function(){
+                init();
+                alert("data updated");
+            }, 500 );
+        };
 
         //Changes the number of items displayed per table page
         $scope.page25 = function () {

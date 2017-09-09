@@ -39,13 +39,6 @@ public class HomeController {
 
         return "update";
     }
-    @PostMapping("/add")
-    @ResponseBody
-    public String add(@ModelAttribute Salary salary, Model model) {
-        salaryRepository.save(salary);
-        return "data successfully added";
-    }
-
 
     @GetMapping("/update/{id}")
     //Updates an existing salary tuple
@@ -63,22 +56,10 @@ public class HomeController {
 
         return "update";
     }
+    //Saves the new/updated tuple 
     @PostMapping("/update/{id}")
-    @ResponseBody
     public String updatePost(@ModelAttribute Salary salary, Model model){
         salaryRepository.save(salary);
-    return"data successfully updated";
-    }
-
-    @RequestMapping("/test")
-    @ResponseBody
-    public String test(Model model){
-        Iterable<Object[]> dataSets = salaryRepository.findTop10CommonJobs();
-        String output= "";
-        for(Object[] data: dataSets){
-            DataSet dataset = new DataSet((String)data[0],((BigInteger)data[1]).toString());
-            output+=dataset;
-        }
-        return output;
+    return "updatesubmit";
     }
 }
