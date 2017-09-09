@@ -11,10 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.xml.crypto.Data;
 import java.math.BigInteger;
 
-
-/**
- * Created by student on 7/10/17.
- */
 @Controller
 public class HomeController {
     @Autowired
@@ -56,7 +52,7 @@ public class HomeController {
 
         return "update";
     }
-    //Saves the new/updated tuple 
+    //Saves the new/updated tuple
     @PostMapping("/update/{id}")
     public String updatePost(@ModelAttribute Salary salary, Model model){
         salaryRepository.save(salary);
