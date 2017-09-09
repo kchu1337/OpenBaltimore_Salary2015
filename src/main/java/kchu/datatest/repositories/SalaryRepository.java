@@ -13,10 +13,6 @@ public interface SalaryRepository extends CrudRepository<Salary,Long> {
     @Query(value = "SELECT MIN(annual_salary) FROM Salary", nativeQuery = true)
     double findMinSalary();
 
-    @Query(value = "SELECT MAX(count) FROM " +
-            "(Select count(job) as count from salary group by job)", nativeQuery = true)
-    int findMaxJobCount();
-
     Iterable<Salary> findAllByAnnualSalaryBetween(double min, double max);
 
     @Query(value = "SELECT distinct Job FROM Salary order by Job asc", nativeQuery = true)
@@ -24,13 +20,6 @@ public interface SalaryRepository extends CrudRepository<Salary,Long> {
 
     @Query(value = "SELECT distinct Agency_Name FROM Salary order by Agency_Name asc", nativeQuery = true)
     Iterable<String> findDistinctAgencyName();
-
-    @Query(value = "SELECT job, COUNT(job) as jobcount " +
-            "FROM salary " +
-            "group by job " +
-            "order by jobcount desc limit 10",
-            nativeQuery = true)
-    Iterable<Object[]> findTop10CommonJobs();
 
     @Query(value = "SELECT job, AVG(Annual_Salary) as jobavg " +
             "FROM salary " +
