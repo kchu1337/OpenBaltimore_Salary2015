@@ -5,9 +5,9 @@ app.controller("ChartController",['$scope', '$http',
 
         //Creates salary Slider
         $scope.salarySlider = {
-            value: 1000,
+            value: 0,
             options: {
-                floor: 1000,
+                floor: 0,
                 ceil: 5000,
                 step: 1000,
             }
@@ -22,6 +22,7 @@ app.controller("ChartController",['$scope', '$http',
         maxPromise.then(function(response) {
             var maxSalary = response.data;
             $scope.salarySlider.options.ceil=maxSalary;
+            $scope.salarySlider.value = maxSalary;
         })
         //Creates job count slider
         $scope.countSlider = {
