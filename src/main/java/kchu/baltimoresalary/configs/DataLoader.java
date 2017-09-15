@@ -1,8 +1,8 @@
-package kchu.datatest.configs;
+package kchu.baltimoresalary.configs;
 
 
-import kchu.datatest.models.Salary;
-import kchu.datatest.repositories.SalaryRepository;
+import kchu.baltimoresalary.models.Salary;
+import kchu.baltimoresalary.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;

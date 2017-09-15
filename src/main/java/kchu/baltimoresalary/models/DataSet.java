@@ -1,4 +1,4 @@
-package kchu.datatest.models;
+package kchu.baltimoresalary.models;
 
 public class DataSet {
     private String label;

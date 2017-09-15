@@ -1,4 +1,4 @@
-package kchu.datatest.models;
+package kchu.baltimoresalary.models;
 
 
 import org.springframework.boot.autoconfigure.web.ResourceProperties;

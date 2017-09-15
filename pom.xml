@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>kchu</groupId>
-	<artifactId>datatest</artifactId>
+	<artifactId>baltimoresalary</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>datatest</name>
+	<name>baltimoresalary</name>
 	<description>Data Visualization project</description>
 
 	<parent>

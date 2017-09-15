@@ -1,15 +1,12 @@
-package kchu.datatest.controllers;
+package kchu.baltimoresalary.controllers;
 
-import kchu.datatest.models.*;
-import kchu.datatest.repositories.SalaryRepository;
+import kchu.baltimoresalary.models.Salary;
+import kchu.baltimoresalary.models.*;
+import kchu.baltimoresalary.repositories.SalaryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
-import javax.xml.crypto.Data;
-import java.math.BigInteger;
 
 @Controller
 public class HomeController {
@@ -57,5 +54,10 @@ public class HomeController {
     public String updatePost(@ModelAttribute Salary salary, Model model){
         salaryRepository.save(salary);
     return "updatesubmit";
+    }
+
+    @GetMapping("/help")
+    public String help(){
+        return "help";
     }
 }

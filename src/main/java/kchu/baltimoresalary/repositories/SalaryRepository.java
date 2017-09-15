@@ -1,6 +1,6 @@
-package kchu.datatest.repositories;
+package kchu.baltimoresalary.repositories;
 
-import kchu.datatest.models.*;
+import kchu.baltimoresalary.models.Salary;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
