@@ -15,16 +15,19 @@ __Instructions:__
 
 3. Run: `mvn spring-boot:run`
 
-4. Open the internet browser of your choice and type in ![localhost:8083](localhost:8083)
+4. Open the internet browser of your choice and type in localhost:8083
 
 # How to use
+
+
+### Image 1
 ![help](src/main/resources/static/images/help1.gif)
 
 1. Switch between table and graph views.
 
 2. Change how many items are shown per table page.
 
-3. Add new salary data. A window will pop up to add new salary data.
+3. Add new salary data. A window will pop up to add new salary data. See [image 3](#help3).
 
 4. Filter each category. Just type in the value and the chart will automatically filter.
 
@@ -33,12 +36,13 @@ __Instructions:__
 6. Filter by annual salary. Set the range of the annual salary and click the filter salary button. Click the reset salary filters button
 to reset the salary filters. 
 
-7. Edit existing salary data.  A window will pop up to edit existing salary data.
+7. Edit existing salary data.  A window will pop up to edit existing salary data. See [image 3](#help3).
 
 8. Delete the salary data. Deletes the row of data. 
 
 9. Pagination. Change pages. 
 
+### Image 2
 ![help](src/main/resources/static/images/help2.gif)
 
 1. Filter jobs based on job title
@@ -48,6 +52,13 @@ to reset the salary filters.
 3. Filter jobs to show only those higher than this minimum job count.
 
 4. Reloads the graph with the above filters
+
+### Image 3 <a name = "help3"/>
+<img src="src/main/resources/static/images/help3.gif"  height="300">
+
+This is the window for editing/adding salary data.
+Click on submit to save changes or click on cancel to cancel
+
 
 __Final design may differ slightly from above images__
 
