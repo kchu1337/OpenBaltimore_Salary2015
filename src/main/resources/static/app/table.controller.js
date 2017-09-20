@@ -46,6 +46,8 @@ app.controller("TableController",['$scope', '$http','$filter', '$timeout',
             });
         }
 
+        //Retrieves the values of the salary filter slider and
+        //retrieves data from the repository with only salary values between the min and max
         $scope.filterSalary = function () {
             var min= $scope.salaryTableSlider.minValue;
             var max= $scope.salaryTableSlider.maxValue;
@@ -56,6 +58,7 @@ app.controller("TableController",['$scope', '$http','$filter', '$timeout',
             alert("Salary Filterd");
         }
 
+        //Resets the annual salary filter
         $scope.reset = function () {
             init();
             alert("Salary Filter reset");
@@ -96,7 +99,7 @@ app.controller("TableController",['$scope', '$http','$filter', '$timeout',
         };
 
         //If the submit button is clicked on the update/add window,
-        // closes the window and alerts the user that the table has been updated
+        //closes the window and alerts the user that the table has been updated
         $scope.closeWinUpdate = function () {
             updateWindow.close();
             $timeout( function(){

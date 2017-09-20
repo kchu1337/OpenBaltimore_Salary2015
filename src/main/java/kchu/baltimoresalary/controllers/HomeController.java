@@ -13,14 +13,14 @@ public class HomeController {
     @Autowired
     SalaryRepository salaryRepository;
 
-    @RequestMapping("/")
     //returns the homepage at the root
+    @RequestMapping("/")
     public String home(){
         return "index";
     }
 
-    @GetMapping("/add")
     //adds a new salary tuple
+    @GetMapping("/add")
     public String add(Model model){
         model.addAttribute("salary", new Salary());
 
@@ -33,8 +33,8 @@ public class HomeController {
         return "update";
     }
 
-    @GetMapping("/update/{id}")
     //Updates an existing salary tuple
+    @GetMapping("/update/{id}")
     public String update(@PathVariable("id") long id, Model model){
 
         //Finds the salary associated with the ID and adds as an attribute in the view

@@ -41,6 +41,7 @@
             onclick="cancel()">Cancel</button>
     <br/>
     <script>
+        //Calls the cancel function in the original window(index.html)
         function cancel() {
             window.top.opener.cancel();
         }
